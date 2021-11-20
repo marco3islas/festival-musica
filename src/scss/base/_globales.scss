@@ -11,6 +11,9 @@ html {
 body {
     font-family: v.$fuente-principal;
     font-size: 1.6rem;
+    &.no-scroll {
+        overflow: hidden;
+    }
 }
 p {
     font-size: 2rem;

@@ -17,7 +17,7 @@ const css = (done) => {
 
 // Galeria javascript
 const javascript = (done) => {
-    src('src/js/**/*.js')
+     src('src/js/**/*.js')
     .pipe(dest('build/js'))
     done();
 }
@@ -70,4 +70,4 @@ exports.js = javascript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.imagenesAvif = imagenesAvif;
-exports.dev = parallel(imagenes, imagenesAvif, versionWebp, javascript, dev);
+exports.dev = parallel(javascript, dev);

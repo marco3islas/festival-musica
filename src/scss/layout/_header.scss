@@ -3,6 +3,17 @@
 .header {
     background-color: v.$verde;
 
+        @include m.tablet {
+            &.fijo {
+                left: 0;
+                top: 0;
+                position: fixed;
+                width: 100%;
+                box-shadow: .3rem .3rem .3rem #555;
+            }
+            
+        }
+
     h1 {
         color: v.$blanco;
         text-align: center;
@@ -21,7 +32,9 @@
     }
 }
 .navegacion-principal {
+    padding: 2rem 0;
     @include m.tablet{
+        padding: .1rem;
         display: flex;
         gap: 2rem;
     }
@@ -30,7 +43,7 @@
         text-align: center;
         font-size: 2.4rem;
         display: block;
-        margin-bottom: 0rem;
+        margin: 1rem 0rem 0rem;
         @include m.tablet {
             margin-bottom: 1rem;
         }

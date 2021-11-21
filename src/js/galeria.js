@@ -4,7 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const iniciarApp = () => {
     crearGaleria();
+    navegacionFija();
     scrollNav();
+}
+
+function navegacionFija() {
+    const barra = document.querySelector('header');
+    const sobreFestival = document.querySelector('.sobre-festival');
+    const body = document.querySelector('body');
+
+    window.addEventListener('scroll', () => {
+        if (sobreFestival.getBoundingClientRect().top < 0) {
+            barra.classList.add('fijo');
+            barra.classList.add('body-scroll');
+        } else {
+            barra.classList.remove('fijo');
+            barra.classList.remove('body-scroll');
+        }
+    });
+
 }
 
 const scrollNav = () => {

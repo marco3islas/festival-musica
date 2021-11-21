@@ -2,22 +2,40 @@ const { src, dest, watch, parallel } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const webp = require('gulp-webp');
 
+// css
+
+const cache = require('gulp-cache');
+const imagemin = require('gulp-imagemin');
+const avif = require('gulp-avif');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
+
+// Compresor Js
+const terser = require('gulp-terser-js');
+
 // Funciones
 const css = (done) => {
     //identificar el archvo scss a compilar
          src('src/scss/**/*.scss')
+        .pipe(sourcemaps.init())
         .pipe( sass())// Compilarlo
+        .pipe( postcss([autoprefixer(), cssnano()]))
+        .pipe(sourcemaps.write('.'))
         .pipe( dest('build/css'))
-    
     // Almacenarlo
-    
     console.log('Compilando sass');
     done();
 }
 
 // Galeria javascript
+
 const javascript = (done) => {
      src('src/js/**/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(terser())
+    .pipe(sourcemaps.write('.'))
     .pipe(dest('build/js'))
     done();
 }
@@ -27,9 +45,6 @@ const dev = (done) => {
     watch('src/scss/**/*.js', javascript);
     done();
 }
-const cache = require('gulp-cache');
-const imagemin = require('gulp-imagemin');
-const avif = require('gulp-avif');
 
 // imagenees jpg
 const imagenes = (done) => {
